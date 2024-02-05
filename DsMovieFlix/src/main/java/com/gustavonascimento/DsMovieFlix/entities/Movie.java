@@ -29,6 +29,7 @@ public class Movie implements Serializable {
 	private Integer year;
 	private String subTitle;
 	private String imgUrl;
+	@Column(columnDefinition = "TEXT")
 	private String synopsis;
 	@ManyToOne
 	@JoinColumn(name = "genre_id")
