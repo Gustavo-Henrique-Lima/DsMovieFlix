@@ -1,6 +1,8 @@
 package com.gustavonascimento.DsMovieFlix.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -10,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Table(name = "tb_movie")
@@ -30,6 +33,8 @@ public class Movie implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "genre_id")
 	private Genre genre;
+	@OneToMany(mappedBy = "movie")
+	private List<Review> reviews = new ArrayList<>();
 
 	public Movie() {
 	}
@@ -100,6 +105,9 @@ public class Movie implements Serializable {
 		this.genre = genre;
 	}
 
+	public List<Review> getReviews() {
+		return reviews;
+	}
 
 	@Override
 	public int hashCode() {
