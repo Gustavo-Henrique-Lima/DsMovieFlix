@@ -3,6 +3,7 @@ package com.gustavonascimento.DsMovieFlix.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,6 @@ import com.gustavonascimento.DsMovieFlix.entities.dto.GenreDTO;
 import com.gustavonascimento.DsMovieFlix.services.GenreService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -27,7 +27,7 @@ public class GenreController {
 	private GenreService service;
 
 	@Operation(description = "Find all a list of genres", summary = "Find all genres", responses = {
-			@ApiResponse(description = "Ok", responseCode = "200", content = @Content(mediaType = "application/json",array = @ArraySchema(schema = @Schema(implementation = GenreDTO.class)))),
+			@ApiResponse(description = "Ok", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Page.class, type = "Page<GenreDTO>"))),
 			@ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content(mediaType = "application/json", examples = @ExampleObject(value = "{\n\"message\": \"Unauthorized\"}"))),
 			@ApiResponse(description = "Forbidden", responseCode = "403", content = @Content(mediaType = "application/json", examples = @ExampleObject(value = "{\n\"message\": \"Forbidden\"}")))})
 	@PreAuthorize("hasAnyRole('VISITOR','MEMBER')")

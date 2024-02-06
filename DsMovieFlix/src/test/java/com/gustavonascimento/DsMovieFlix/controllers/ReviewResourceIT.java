@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gustavonascimento.DsMovieFlix.entities.dto.ReviewDTO;
 import com.gustavonascimento.DsMovieFlix.test.TokenUtil;
 
 @SpringBootTest
